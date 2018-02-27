@@ -183,6 +183,7 @@ class ViewController: UIViewController {
         ]
         return UVs
     }
+    //返回值为[UInt8],Int型范围过大会出错
     func cubeSolidIndices() -> [UInt8] {
         //六个面索引,共12个三角形的索引
         let solidIndices:[UInt8] = [
