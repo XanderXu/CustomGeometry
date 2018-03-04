@@ -12,6 +12,10 @@
 		6C55F7372044EEA7008B123D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6C55F7352044EEA7008B123D /* Main.storyboard */; };
 		6C55F7392044EEA7008B123D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6C55F7382044EEA7008B123D /* Assets.xcassets */; };
 		6C55F73C2044EEA7008B123D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6C55F73A2044EEA7008B123D /* LaunchScreen.storyboard */; };
+		6C6D384F204B9A9A0091B13D /* Fighter_Specular_25.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6C6D384B204B9A9A0091B13D /* Fighter_Specular_25.jpg */; };
+		6C6D3850204B9A9A0091B13D /* Fighter_Illumination_25.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6C6D384C204B9A9A0091B13D /* Fighter_Illumination_25.jpg */; };
+		6C6D3851204B9A9A0091B13D /* Fighter_Diffuse_25.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6C6D384D204B9A9A0091B13D /* Fighter_Diffuse_25.jpg */; };
+		6C6D3852204B9A9A0091B13D /* Fighter.obj in Resources */ = {isa = PBXBuildFile; fileRef = 6C6D384E204B9A9A0091B13D /* Fighter.obj */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +26,10 @@
 		6C55F7382044EEA7008B123D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6C55F73B2044EEA7008B123D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6C55F73D2044EEA7008B123D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6C6D384B204B9A9A0091B13D /* Fighter_Specular_25.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Fighter_Specular_25.jpg; sourceTree = "<group>"; };
+		6C6D384C204B9A9A0091B13D /* Fighter_Illumination_25.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Fighter_Illumination_25.jpg; sourceTree = "<group>"; };
+		6C6D384D204B9A9A0091B13D /* Fighter_Diffuse_25.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Fighter_Diffuse_25.jpg; sourceTree = "<group>"; };
+		6C6D384E204B9A9A0091B13D /* Fighter.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Fighter.obj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +62,10 @@
 		6C55F7302044EEA7008B123D /* CustomGeometry */ = {
 			isa = PBXGroup;
 			children = (
+				6C6D384D204B9A9A0091B13D /* Fighter_Diffuse_25.jpg */,
+				6C6D384C204B9A9A0091B13D /* Fighter_Illumination_25.jpg */,
+				6C6D384B204B9A9A0091B13D /* Fighter_Specular_25.jpg */,
+				6C6D384E204B9A9A0091B13D /* Fighter.obj */,
 				6C55F7312044EEA7008B123D /* AppDelegate.swift */,
 				6C55F7332044EEA7008B123D /* ViewController.swift */,
 				6C55F7352044EEA7008B123D /* Main.storyboard */,
@@ -126,6 +138,10 @@
 				6C55F73C2044EEA7008B123D /* LaunchScreen.storyboard in Resources */,
 				6C55F7392044EEA7008B123D /* Assets.xcassets in Resources */,
 				6C55F7372044EEA7008B123D /* Main.storyboard in Resources */,
+				6C6D3852204B9A9A0091B13D /* Fighter.obj in Resources */,
+				6C6D3851204B9A9A0091B13D /* Fighter_Diffuse_25.jpg in Resources */,
+				6C6D384F204B9A9A0091B13D /* Fighter_Specular_25.jpg in Resources */,
+				6C6D3850204B9A9A0091B13D /* Fighter_Illumination_25.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

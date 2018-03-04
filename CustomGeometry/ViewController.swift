@@ -8,6 +8,20 @@
 
 import UIKit
 import SceneKit
+import ModelIO
+import SceneKit.ModelIO
+
+extension MDLMaterial {
+    func setTextureProperties(_ textures: [MDLMaterialSemantic:String]) -> Void {
+        for (key,value) in textures {
+            guard let url = Bundle.main.url(forResource: value, withExtension: "") else {
+                fatalError("Failed to find URL for resource \(value).")
+            }
+            let property = MDLMaterialProperty(name:value, semantic: key, url: url)
+            self.setProperty(property)
+        }
+    }
+}
 
 class ViewController: UIViewController {
     var scene = SCNScene()
@@ -21,10 +35,16 @@ class ViewController: UIViewController {
         //camera摄像机
         let cameraNode = SCNNode()
         cameraNode.camera = SCNCamera()
-        cameraNode.position = SCNVector3Make(0, 12, 30)
-        cameraNode.rotation = SCNVector4Make(1, 0, 0, -sin(12/30.0))
+        cameraNode.position = SCNVector3Make(0, 12, 50)
+        cameraNode.rotation = SCNVector4Make(1, 0, 0, -sin(12/50.0))
         scene.rootNode.addChildNode(cameraNode)
         
+        //加载立方体
+        loadCube()
+        //加载.obj格式文件
+        loadFighter()
+    }
+    func loadCube() -> Void {
         //创建自定义几何体对象
         // ----------------------------------
         //先创建各种source
@@ -37,10 +57,10 @@ class ViewController: UIViewController {
         let solidElement = SCNGeometryElement(indices: cubeSolidIndices(), primitiveType: .triangles)
         //或通过Data创建Element
         /*
-        let ptr = UnsafeBufferPointer(start: cubeSolidIndices(), count: solidIndices.count)
-        let solidIndexData = Data(buffer: ptr)//或直接用Data(bytes: solidIndices)
-        let lineElement2 = SCNGeometryElement(data: solidIndexData, primitiveType: .triangles, primitiveCount: 12, bytesPerIndex: MemoryLayout<UInt8>.size)
-        */
+         let ptr = UnsafeBufferPointer(start: cubeSolidIndices(), count: solidIndices.count)
+         let solidIndexData = Data(buffer: ptr)//或直接用Data(bytes: solidIndices)
+         let lineElement2 = SCNGeometryElement(data: solidIndexData, primitiveType: .triangles, primitiveCount: 12, bytesPerIndex: MemoryLayout<UInt8>.size)
+         */
         
         let lineIndexData = Data(bytes: cubeLineIndices())
         let lineElement = SCNGeometryElement(data: lineIndexData, primitiveType: .line, primitiveCount: 18, bytesPerIndex: MemoryLayout<UInt8>.size)
@@ -64,7 +84,41 @@ class ViewController: UIViewController {
         let cubeNode = SCNNode(geometry: geometry)
         scene.rootNode.addChildNode(cubeNode)
     }
-
+    func loadFighter() -> Void {
+        // 加载.OBJ文件
+        guard let url = Bundle.main.url(forResource: "Fighter", withExtension: "obj") else {
+            fatalError("Failed to find model file.")
+        }
+        
+        let asset = MDLAsset(url:url)
+        guard let object = asset.object(at: 0) as? MDLMesh else {
+            fatalError("Failed to get mesh from asset.")
+        }
+        
+        // 创建各种纹理的材质
+        let scatteringFunction = MDLScatteringFunction()
+        let material = MDLMaterial(name: "baseMaterial", scatteringFunction: scatteringFunction)
+        
+        material.setTextureProperties([
+            .baseColor:"Fighter_Diffuse_25.jpg",
+            .specular:"Fighter_Specular_25.jpg",
+            .emission:"Fighter_Illumination_25.jpg"])
+        
+        // 将纹理应用到每个网格上
+        for  submesh in object.submeshes!  {
+            if let submesh = submesh as? MDLSubmesh {
+                submesh.material = material
+            }
+        }
+        
+        // 将ModelIO对象包装成SceneKit对象
+        let node = SCNNode(mdlObject: object)
+        node.scale = SCNVector3Make(0.05, 0.05, 0.05)
+        node.position = SCNVector3Make(0, -20, 0)
+        let scene = cubeView.scene
+        scene?.rootNode.addChildNode(node)
+        
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
