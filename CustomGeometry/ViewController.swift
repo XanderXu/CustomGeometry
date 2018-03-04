@@ -84,6 +84,8 @@ class ViewController: UIViewController {
         let cubeNode = SCNNode(geometry: geometry)
         scene.rootNode.addChildNode(cubeNode)
     }
+    
+    
     func loadFighter() -> Void {
         // 加载.OBJ文件
         guard let url = Bundle.main.url(forResource: "Fighter", withExtension: "obj") else {
@@ -111,12 +113,12 @@ class ViewController: UIViewController {
             }
         }
         
-        // 将ModelIO对象包装成SceneKit对象
-        let node = SCNNode(mdlObject: object)
+        // 将ModelIO对象包装成SceneKit对象,调整大小和位置
+        let node = SCNNode(mdlObject: object) //需要导入头文件`import SceneKit.ModelIO`
         node.scale = SCNVector3Make(0.05, 0.05, 0.05)
         node.position = SCNVector3Make(0, -20, 0)
-        let scene = cubeView.scene
-        scene?.rootNode.addChildNode(node)
+        
+        cubeView.scene?.rootNode.addChildNode(node)
         
     }
     override func didReceiveMemoryWarning() {
